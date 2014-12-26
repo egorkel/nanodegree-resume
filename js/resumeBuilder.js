@@ -43,13 +43,15 @@ var work = {
             "employer": "Proton",
             "title": "Engineer",
             "location": "Kharkov",
-            "dates": "2008-2010"
+            "dates": "2008-2010",
+			"description": "Creating drawings of detales and assembles using AutoCAD and SolidWorks"
         },
         {
             "employer": "CCB Proton",
             "title": "Engineer",
             "location": "Kharkov",
-            "dates": "2010-2014"
+            "dates": "2010-2014",
+			"description": "Modeling, routing and tuning pcbs for radioreceivers. Writing programms for controling, calculating and storring data from receivers using C++, CUDA and OpenGL"
         }
     ]
 };
@@ -82,6 +84,7 @@ $("#header").append(role);
 
 //contacts
 
+
 //picture
 var pic = HTMLbioPic.replace("%data%",bio.picture);
 $("#header").append(pic);
@@ -104,12 +107,21 @@ if (bio.skills !== undefined) {
 if (work.jobs !== undefined) {
 	var empl;
 	var tit;
+	var dates;
+	var loc;
+	var desc;
 	for (var i in work.jobs) {
 		$("#workExperience").append(HTMLworkStart);
 		empl = HTMLworkEmployer.replace("%data%",
-			work.jobs[i].employer);
+										work.jobs[i].employer);
 		tit = HTMLworkTitle.replace("%data%",
-			work.jobs[i].title);
-		$(".work-entry:last").append(empl+tit);
+									work.jobs[i].title);
+		dates = HTMLworkDates.replace("%data%",
+									  work.jobs[i].dates);
+		loc = HTMLworkLocation.replace("%data%",
+									   work.jobs[i].location);
+		desc = HTMLworkDescription.replace("%data%",
+										   work.jobs[i].description);
+		$(".work-entry:last").append(empl+tit+dates+loc+desc);
 	}
 }
