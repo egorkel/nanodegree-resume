@@ -77,8 +77,8 @@ var projects = {
 };
 
 //name and role
-var name = HTMLheaderName.replace("%data%",bio.name);
-$("#header").append(name);
+var fmt_name = HTMLheaderName.replace("%data%",bio.name);
+$("#header").append(fmt_name);
 var role = HTMLheaderRole.replace("%data%",bio.role);
 $("#header").append(role);
 
@@ -104,24 +104,42 @@ if (bio.skills !== undefined) {
 }
 
 //jbos
-if (work.jobs !== undefined) {
-	var empl;
-	var tit;
-	var dates;
-	var loc;
-	var desc;
-	for (var i in work.jobs) {
-		$("#workExperience").append(HTMLworkStart);
-		empl = HTMLworkEmployer.replace("%data%",
-										work.jobs[i].employer);
-		tit = HTMLworkTitle.replace("%data%",
-									work.jobs[i].title);
-		dates = HTMLworkDates.replace("%data%",
-									  work.jobs[i].dates);
-		loc = HTMLworkLocation.replace("%data%",
-									   work.jobs[i].location);
-		desc = HTMLworkDescription.replace("%data%",
-										   work.jobs[i].description);
-		$(".work-entry:last").append(empl+tit+dates+loc+desc);
+function displayWork() {
+	if (work.jobs !== undefined) {
+		var empl;
+		var tit;
+		var dates;
+		var loc;
+		var desc;
+		for (var i in work.jobs) {
+			$("#workExperience").append(HTMLworkStart);
+			empl = HTMLworkEmployer.replace("%data%", work.jobs[i].employer);
+			tit = HTMLworkTitle.replace("%data%", work.jobs[i].title);
+			dates = HTMLworkDates.replace("%data%", work.jobs[i].dates);
+			loc = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+			desc = HTMLworkDescription.replace("%data%",
+											   work.jobs[i].description);
+			$(".work-entry:last").append(empl+tit+dates+loc+desc);
+		}
 	}
 }
+
+displayWork();
+
+//click events
+//$(document).click(function(loc) {logClicks(loc.pageX,loc.pageY);});
+
+//adding button
+$("#main").append("<button> Button </button>");
+
+function inName(loc_name) {
+	var int_name = loc_name/*.text()*/.split(" ");
+	int_name[1] = int_name[1].toUpperCase();
+	return int_name[0] + " " + int_name[1];
+}
+
+/*$("#main").button().click(function(event) {
+	var int_name = $("#name").text().split(" ");
+	int_name[1] = int_name[1].toUpperCase();
+});
+*/	
