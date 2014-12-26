@@ -1,0 +1,115 @@
+var bio = {
+    "name": "Yegor Kolesnikov",
+    "role": "Junior web developer",
+    "contacts": [
+        {
+            "mobile": "+380956546058",
+            "email": "kelegorkel@gmail.com",
+			"githbu": "egorkel"
+        }
+    ],
+    "picture": "images\\me.jpg",
+    "mes": "God lives!",
+    "skills": ["JS", "HTML", "CSS", "c++", "CUDA"]
+};
+
+var education = {
+    "schools": [
+        {
+            "name": "school",
+            "city": "Lozovaia",
+            "years": "1993-2003",
+            "grad": "gold medal"
+        },
+        {
+            "name": "KNURE",
+            "city": "Kharkov",
+            "years": "2003-2008",
+            "grad": "radioengineer"
+        }
+    ],
+    "onlineCourses": [
+        {
+            "name": "JS Basiscs",
+            "Location": "Udacity.com",
+            "years": "2014"
+        }
+    ]
+};
+
+var work = {
+    "jobs": [
+        {
+            "employer": "Proton",
+            "title": "Engineer",
+            "location": "Kharkov",
+            "dates": "2008-2010"
+        },
+        {
+            "employer": "CCB Proton",
+            "title": "Engineer",
+            "location": "Kharkov",
+            "dates": "2010-2014"
+        }
+    ]
+};
+
+var projects = {
+    "projects": [
+        {
+            "title": "Minesweeper",
+            "dates": "2001",
+            "description": "written in Z80 assembler"
+        },
+        {
+            "title": "Sudoku",
+            "dates": "2010",
+            "description": "Can generate sudoku pazzles"
+        },
+        {
+            "title": "CUDAcorcalc",
+            "dates": "2012-2014",
+            "description": "calculates corfunction for 10000 samples per 1 second"
+        }
+    ]
+};
+
+//name and role
+var name = HTMLheaderName.replace("%data%",bio.name);
+$("#header").append(name);
+var role = HTMLheaderRole.replace("%data%",bio.role);
+$("#header").append(role);
+
+//contacts
+
+//picture
+var pic = HTMLbioPic.replace("%data%",bio.picture);
+$("#header").append(pic);
+
+//welcome mes
+var mes = HTMLWelcomeMsg.replace("%data%",bio.mes);
+$("#header").append(mes);
+
+//skills
+if (bio.skills !== undefined) {
+	$("#header").append(HTMLskillsStart);
+	var str_skill;
+	for (var i of bio.skills) {
+		str_skill = HTMLskills.replace("%data%", i);
+		$("#skills").append(str_skill);
+	}
+}
+
+//jbos
+if (work.jobs !== undefined) {
+	var empl;
+	var tit;
+	for (var i in work.jobs) {
+		$("#workExperience").append(HTMLworkStart);
+		empl = HTMLworkEmployer.replace("%data%",
+			work.jobs[i].employer);
+		tit = HTMLworkTitle.replace("%data%",
+			work.jobs[i].title);
+		$(".work-entry:last").append(empl+tit);
+	}
+}
