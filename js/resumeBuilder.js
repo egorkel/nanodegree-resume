@@ -77,20 +77,20 @@ var projects = {
 };
 
 //name and role
-var fmt_name = HTMLheaderName.replace("%data%",bio.name);
+var fmt_name = HTMLheaderName.replace("%data%", bio.name);
 $("#header").append(fmt_name);
-var role = HTMLheaderRole.replace("%data%",bio.role);
+var role = HTMLheaderRole.replace("%data%", bio.role);
 $("#header").append(role);
 
 //contacts
 
 
 //picture
-var pic = HTMLbioPic.replace("%data%",bio.picture);
+var pic = HTMLbioPic.replace("%data%", bio.picture);
 $("#header").append(pic);
 
 //welcome mes
-var mes = HTMLWelcomeMsg.replace("%data%",bio.mes);
+var mes = HTMLWelcomeMsg.replace("%data%", bio.mes);
 $("#header").append(mes);
 
 //skills
@@ -129,17 +129,13 @@ displayWork();
 //click events
 //$(document).click(function(loc) {logClicks(loc.pageX,loc.pageY);});
 
-//adding button
-$("#main").append("<button> Button </button>");
-
+//adding internationalizeButton
+$("#main").append(internationalizeButton);
+var name = bio.name;
 function inName(loc_name) {
-	var int_name = loc_name/*.text()*/.split(" ");
+	var int_name = loc_name.trim().split(" ");
 	int_name[1] = int_name[1].toUpperCase();
+	int_name[0] = int_name[0].slice(0, 1).toUpperCase() +
+		int_name[0].slice(1).toLowerCase();
 	return int_name[0] + " " + int_name[1];
 }
-
-/*$("#main").button().click(function(event) {
-	var int_name = $("#name").text().split(" ");
-	int_name[1] = int_name[1].toUpperCase();
-});
-*/	
