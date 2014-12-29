@@ -2,13 +2,9 @@ var bio = {
     "name": "Yegor Kolesnikov",
     "role": "Junior web developer",
     "contacts": {
-        "contacts": [
-			{
-				"mobile": "+380956546058",
-				"email": "kelegorkel@gmail.com",
-				"githab": "egorkel"
-			}
-		],
+		"mobile": "+380956546058",
+		"email": "kelegorkel@gmail.com",
+		"githab": "egorkel",
 		"location": "Kharkov, Ukraine"
 	},
     "picture": "images\\me.jpg",
@@ -86,7 +82,14 @@ var role = HTMLheaderRole.replace("%data%", bio.role);
 $("#header").append(role);
 
 //contacts
-
+var cont_mob = HTMLmobile.replace("%data%", bio.contacts.mobile);
+var cont_mail = HTMLemail.replace("%data%", bio.contacts.email);
+var cont_git = HTMLgithub.replace("%data%", bio.contacts.githab);
+var cont_loc = HTMLlocation.replace("%data%", bio.contacts.location);
+$("#header").append(cont_mob);
+$("#header").append(cont_mail);
+$("#header").append(cont_git);
+$("#header").append(cont_loc);
 
 //picture
 var pic = HTMLbioPic.replace("%data%", bio.picture);
