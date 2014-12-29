@@ -18,13 +18,15 @@ var education = {
             "name": "school",
             "location": "Lozovaia",
             "years": "1993-2003",
-            "grad": "gold medal"
+            "grad": "gold medal",
+			"maj": "common"
         },
         {
             "name": "KNURE",
             "location": "Kharkov, Ukraine",
             "years": "2003-2008",
-            "grad": "radioengineer"
+            "grad": "master",
+			"maj": "radioengineer"
         }
     ],
     "onlineCourses": [
@@ -33,7 +35,41 @@ var education = {
             "location": "Udacity.com",
             "years": "2014"
         }
-    ]
+    ],
+	"display": function () {
+		for (var i in education.schools) {
+			$("#education").append(HTMLschoolStart);
+			var sc_name = HTMLschoolName.replace("%data%",
+												 education.schools[i].name);
+			var sc_loc =
+				HTMLschoolLocation.replace("%data%",
+										   education.schools[i].location);
+			var sc_year = HTMLschoolDates.replace("%data%",
+												  education.schools[i].years);
+			var sc_grad = HTMLschoolDegree.replace("%data%",
+												   education.schools[i].grad);
+			var sc_maj = HTMLschoolMajor.replace("%data%",
+												 education.schools[i].maj);
+			$(".education-entry:last").append(sc_name + sc_grad + sc_year +
+											  sc_loc + sc_maj);
+		}
+		
+		$("#education").append(HTMLonlineClasses);
+		
+		for (var i in education.onlineCourses) {
+			$("#education").append(HTMLschoolStart);
+			var onc_name =
+				HTMLonlineTitle.replace("%data%",
+										education.onlineCourses[i].name);
+			var onc_sch =
+				HTMLonlineSchool.replace("%data%",
+										 education.onlineCourses[i].location);
+			var onc_year =
+				HTMLonlineDates.replace("%data%",
+										education.onlineCourses[i].years);
+			$(".education-entry:last").append(onc_name + onc_sch + onc_year);
+		}
+	}
 };
 
 var work = {
@@ -161,6 +197,8 @@ projects.display = function() {
 	}
 }
 projects.display();
+
+education.display();
 
 //map
 $("#mapDiv").append(googleMap);
