@@ -1,13 +1,16 @@
 var bio = {
     "name": "Yegor Kolesnikov",
     "role": "Junior web developer",
-    "contacts": [
-        {
-            "mobile": "+380956546058",
-            "email": "kelegorkel@gmail.com",
-			"githbu": "egorkel"
-        }
-    ],
+    "contacts": {
+        "contacts": [
+			{
+				"mobile": "+380956546058",
+				"email": "kelegorkel@gmail.com",
+				"githab": "egorkel"
+			}
+		],
+		"location": "Kharkov, Ukraine"
+	},
     "picture": "images\\me.jpg",
     "mes": "God lives!",
     "skills": ["JS", "HTML", "CSS", "c++", "CUDA"]
@@ -17,13 +20,13 @@ var education = {
     "schools": [
         {
             "name": "school",
-            "city": "Lozovaia",
+            "location": "Lozovaia",
             "years": "1993-2003",
             "grad": "gold medal"
         },
         {
             "name": "KNURE",
-            "city": "Kharkov",
+            "location": "Kharkov, Ukraine",
             "years": "2003-2008",
             "grad": "radioengineer"
         }
@@ -31,7 +34,7 @@ var education = {
     "onlineCourses": [
         {
             "name": "JS Basiscs",
-            "Location": "Udacity.com",
+            "location": "Udacity.com",
             "years": "2014"
         }
     ]
@@ -42,14 +45,14 @@ var work = {
         {
             "employer": "Proton",
             "title": "Engineer",
-            "location": "Kharkov",
+            "location": "Kharkov, Ukraine",
             "dates": "2008-2010",
 			"description": "Creating drawings of detales and assembles using AutoCAD and SolidWorks"
         },
         {
             "employer": "CCB Proton",
             "title": "Engineer",
-            "location": "Kharkov",
+            "location": "Kharkov, Ukraine",
             "dates": "2010-2014",
 			"description": "Modeling, routing and tuning pcbs for radioreceivers. Writing programms for controling, calculating and storring data from receivers using C++, CUDA and OpenGL"
         }
@@ -139,3 +142,22 @@ function inName(loc_name) {
 		int_name[0].slice(1).toLowerCase();
 	return int_name[0] + " " + int_name[1];
 }
+
+//projects section
+projects.display = function() {
+	for (var i in projects.projects) {
+		$("#projects").append(HTMLprojectStart);
+		var prj_tit = HTMLprojectTitle.replace("%data%",
+											   projects.projects[i].title);
+		var prj_dates = HTMLprojectDates.replace("%data%",
+												 projects.projects[i].dates);
+		var prj_descr =
+			HTMLprojectDescription.replace("%data%",
+										   projects.projects[i].description);
+		$(".project-entry:last").append(prj_tit + prj_dates + prj_descr);
+	}
+}
+projects.display();
+
+//map
+$("#mapDiv").append(googleMap);
