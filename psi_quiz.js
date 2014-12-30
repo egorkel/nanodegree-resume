@@ -1,13 +1,26 @@
 // Iterate through the localizedRuleNames in ruleResults and 
 // return an array of their strings.
 function ruleList(results) {
-    // Your code goes here!
+    var loc_rul_names = [];
+	for (var i in results.formattedResults.ruleResults) {
+		if (results.formattedResults.ruleResults.hasOwnProperty(i)) {
+			loc_rul_names.push(results.formattedResults.ruleResults[i].localizedRuleName);
+		}
+	}
+	return loc_rul_names;
 }
 
 // Iterate through pageStats in the psiResults object and 
 // return the total number of bytes to load the website.
 function totalBytes(results) {
-    // Your code goes here!
+    var tot_bytes = 0;
+	for (var i in results.pageStats) {
+		if (results.pageStats.hasOwnProperty(i) &&
+		   i.search("Bytes") !== -1) {
+				tot_bytes += parseInt(results.pageStats[i], 10);
+		}
+	}
+	return tot_bytes;
 }
 
 // Below, you'll find a sample PS Insights JSON
@@ -19,6 +32,7 @@ psinsights = {
  "responseCode": 200,
  "title": "PageSpeed Home",
  "score": 90,
+	
  "pageStats": {
   "numberResources": 22,
   "numberHosts": 7,
@@ -32,17 +46,21 @@ psinsights = {
   "numberJsResources": 6,
   "numberCssResources": 2
  },
+	
+	
  "formattedResults": {
   "locale": "en_US",
-  "ruleResults": {
+	 
+	"ruleResults": {
     "AvoidBadRequests": {
       "localizedRuleName": "Avoid bad requests",
       "ruleImpact": 0.0
     },
+	  
     "MinifyJavaScript": {
       "localizedRuleName": "Minify JavaScript",
       "ruleImpact": 0.1417,
-      "urlBlocks": [
+  "urlBlocks": [
       {
         "header": {
        "format": "Minifying the following JavaScript resources could reduce their size by $1 ($2% reduction).",
@@ -100,12 +118,15 @@ psinsights = {
      }
     ]
    },
+	  
    "SpriteImages": {
     "localizedRuleName": "Combine images into CSS sprites",
     "ruleImpact": 0.0
    }
   }
  },
+	
+	
  "version": {
   "major": 1,
   "minor": 11
